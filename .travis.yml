@@ -18,12 +18,11 @@ matrix:
   # Fast finish allows to set the build as "finished" even if the "allow_failures" matrix elements are not finished yet.
   fast_finish: true
   include:
-    - php: 7.0
-    - php: 7.1
+    - php: 7.1.3
     - php: 7.2
-    - php: hhvm
+    - php: nightly
   allow_failures:
-    - php: hhvm
+    - php: nightly
 
 # Define an environment variable
 env:
@@ -47,3 +46,11 @@ script:
 # After a build, send email notification with the build results
 notifications:
   email: ivan@devexus.net
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep_history: true
+  on:
+    branch: master
