@@ -39,10 +39,6 @@ install:
   - composer install
   - cp .env.dist .env
 
-# Run script
-script:
-  # - composer validate --strict --no-check-lock
-
 # After a build, send email notification with the build results
 notifications:
   email: ivan@devexus.net
