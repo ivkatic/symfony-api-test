@@ -5,32 +5,6 @@ namespace App\Api;
 class GithubApi extends Api
 {
     /**
-     * Checks route requested and returns corresponding method
-     *
-     * @param string $endpoint
-     * @param string $data
-     * @return mixed array or object
-     * 
-     * @since 1.0.0
-     */
-    public function client($endpoint, $data = '')
-    {
-        switch ($endpoint) {
-            case 'score':
-                $api = $this->getScore($data);
-                break;
-            default:
-                $api = json_encode([
-                    'term' => $data,
-                    'status' => 400,
-                    'msg' => '400 Bad Request'
-                ]);
-        }
-
-        return $api;
-    }
-
-    /**
      * Calculates score of inputted keyword.
      * First checks cache for keyword if not fetches new data and calculates 
      *

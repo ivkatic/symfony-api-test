@@ -3,6 +3,7 @@
 namespace App\ApiV2;
 
 use App\Api\Cache;
+use App\ApiV2\GithubApiV2;
 
 class ApiV2 extends Cache {
 
@@ -35,6 +36,33 @@ class ApiV2 extends Cache {
         parent::__construct();
         $this->checkRequest();
         $this->init_services();
+    }
+
+    /**
+     * Checks route requested and returns corresponding method
+     *
+     * @param string $endpoint
+     * @param string $data
+     * @return mixed array or object
+     * 
+     * @since 1.0.0
+     */
+    public function client($endpoint, $data = '')
+    {
+        switch ($endpoint) {
+            case 'score':
+                $github = new GithubApiV2;
+                $api = $github->getScore($data);
+                break;
+            default:
+                $api = [
+                    'content' => '',
+                    'status' => 400,
+                    'headers' => ['Status' => '400 Bad Request']
+                ];
+        }
+
+        return $api;
     }
 
     /**

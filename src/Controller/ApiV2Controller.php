@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-use App\ApiV2\GithubApiV2;
+use App\ApiV2\ApiV2;
 
 class ApiV2Controller extends AbstractController
 {
@@ -16,7 +16,7 @@ class ApiV2Controller extends AbstractController
      */
     public function handle($endpoint, $keyword)
     {
-        $api = new GithubApiV2;
+        $api = new ApiV2;
         
         $data = $api->client($endpoint, $keyword);
 

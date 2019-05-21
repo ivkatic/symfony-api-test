@@ -4,32 +4,6 @@ namespace App\ApiV2;
 
 class GithubApiV2 extends ApiV2
 {
-    /**
-     * Checks route requested and returns corresponding method
-     *
-     * @param string $endpoint
-     * @param string $data
-     * @return mixed array or object
-     * 
-     * @since 1.0.0
-     */
-    public function client($endpoint, $data = '')
-    {
-        switch ($endpoint) {
-            case 'score':
-                $api = $this->getScore($data);
-                break;
-            default:
-                $api = [
-                    'content' => '',
-                    'status' => 400,
-                    'headers' => ['Status' => '400 Bad Request']
-                ];
-        }
-
-        return $api;
-    }
-
 
     /**
      * Calculates score of inputted keyword.

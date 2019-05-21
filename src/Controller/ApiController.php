@@ -5,7 +5,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-use App\Api\GithubApi;
+use App\Api\Api;
 
 class ApiController extends AbstractController
 {
@@ -16,7 +16,7 @@ class ApiController extends AbstractController
      */
     public function score($endpoint, $keyword)
     {
-        $api = new GithubApi;
+        $api = new Api;
         
         $data = $api->client($endpoint, $keyword);
 

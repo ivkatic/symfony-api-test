@@ -3,6 +3,7 @@
 namespace App\Api;
 
 use App\Api\Cache;
+use App\Api\GithubApi;
 
 /**
  * Main API class
@@ -41,6 +42,34 @@ class Api extends Cache {
         parent::__construct();
         $this->init_services();
     }
+
+    /**
+     * Checks route requested and returns corresponding method
+     *
+     * @param string $endpoint
+     * @param string $data
+     * @return mixed array or object
+     * 
+     * @since 1.0.0
+     */
+    public function client($endpoint, $data = '')
+    {
+        switch ($endpoint) {
+            case 'score':
+                $github = new GithubApi;
+                $api = $github->getScore($data);
+                break;
+            default:
+                $api = json_encode([
+                    'term' => $data,
+                    'status' => 400,
+                    'msg' => '400 Bad Request'
+                ]);
+        }
+
+        return $api;
+    }
+
 
     /**
      * GET data from service api
