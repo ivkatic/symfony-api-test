@@ -36,7 +36,7 @@ before-install:
 # Create database, schema and fixtures
 install:
   - composer install
-  - cp .env.dist .env
+#  - cp .env.dist .env
 
 # Run script
 script:
