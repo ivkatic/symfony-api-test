@@ -41,7 +41,7 @@ install:
 
 # Run script
 script:
-   - composer validate --strict --no-check-lock
+  # - composer validate --strict --no-check-lock
 
 # After a build, send email notification with the build results
 notifications:
