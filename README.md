@@ -73,7 +73,7 @@ After that define new routes in ApiController/ApiV2Controller and/or set endpoin
 
 ## Minimum Requirements
 
-- PHP 7.0+
+- PHP 7.2+
 - Composer to install
 
 ## License
