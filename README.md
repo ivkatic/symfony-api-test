@@ -24,11 +24,36 @@ GITHUB_TOKEN=<token>
 Run `php bin/console server:run` to start local server
 
 ## Usage
-### V1
+### v1
 #### Fetch score for specific keyword
+`/api/v1/{endpoint}/{keyword}`
+Example
 ``` 
 GET http://127.0.0.1:8000/api/v1/score/php
 RESULT JSON {"term":"php","score":"3.36"}
+```
+
+### v2
+#### Fetch score for specific keyword
+`/api/v2/{endpoint}/{keyword}`
+Returns the data in jsonapi specification and for that needs Headers Content-Type and Accept to be set properly
+Example
+``` 
+GET http://127.0.0.1:8000/api/v2/score/php Headers -> Content-Type: application/vnd.api+json, Accept: application/vnd.api+json
+RESULT 
+JSONAPI 
+{
+    "data": {
+        "type": "score",
+        "id": "php",
+        "attributes": {
+            "score": "3.36"
+        }
+    },
+    "jsonapi": {
+        "version": "1.0"
+    }
+}
 ```
 
 ## Minimum Requirements
