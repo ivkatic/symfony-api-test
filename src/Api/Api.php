@@ -113,6 +113,7 @@ class Api extends Cache
      * Insert data into service api
      *
      * @return void
+     * @since 1.0.0
      */
     public function put()
     {
@@ -122,9 +123,20 @@ class Api extends Cache
      * Update data in service api
      *
      * @return void
+     * @since 1.0.0
      */
     public function update()
     {
+    }
+
+    /**
+     * Delete data from api
+     *
+     * @return void
+     * @since 1.0.0
+     */
+    public function delete() {
+        
     }
 
     /**
