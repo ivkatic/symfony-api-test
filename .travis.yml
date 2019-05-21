@@ -19,6 +19,7 @@ matrix:
   fast_finish: true
   include:
     - php: 7.2
+    - php: 7.3
     - php: nightly
   allow_failures:
     - php: nightly
@@ -35,7 +36,6 @@ before-install:
 # Create database, schema and fixtures
 install:
   - composer install
-  - cp app/config/parameters.yml.dist app/config/parameters.yml
   - cp .env.dist .env
 
 # Run script
