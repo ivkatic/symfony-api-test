@@ -30,7 +30,6 @@ env:
 
 # Update composer
 before-install:
-  - mysql -e 'CREATE DATABASE myapp_test;'
   - composer self-update
 
 # Install composer dependencies,
@@ -38,6 +37,9 @@ before-install:
 install:
   - composer install
   - cp .env.dist .env
+
+script:
+  - mysql -e 'CREATE DATABASE myapp_test;'
 
 # After a build, send email notification with the build results
 notifications:
