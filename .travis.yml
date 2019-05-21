@@ -30,17 +30,18 @@ env:
 
 # Update composer
 before-install:
+  - mysql -e 'CREATE DATABASE myapp_test;'
   - composer self-update
 
 # Install composer dependencies,
 # Create database, schema and fixtures
 install:
   - composer install
-#  - cp .env.dist .env
+  - cp .env.dist .env
 
 # Run script
 script:
-#    - composer validate --strict --no-check-lock
+   - composer validate --strict --no-check-lock
 
 # After a build, send email notification with the build results
 notifications:
