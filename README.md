@@ -10,60 +10,31 @@ Symfony API example
 ## Installation
 
 Create a local copy of this repository via git:
-``` ~$ git clone git@github.com:ivkatic/WpNonce.git  ```
+``` ~$ git clone git@github.com:ivkatic/symfony-api-test.git  ```
 Change to the directory and run composer:
 ```
-~$ cd WpNonces
-WpNonces$ composer install
+~$ cd api-test
+api-test$ composer install
 ```
+Create .env.local and set DATABASE_URL and GITHUB_TOKEN vars
+```
+DATABASE_URL="mysql://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>"
+GITHUB_TOKEN=<token>
+```
+Run `php bin/console server:run` to start local server
 
 ## Usage
-### Create a nonce with specific action and User ID
+### V1
+#### Fetch score for specific keyword
 ``` 
-$nonce = new WpNonce;
-$newNonce = $nonce->createNonce('my-nonce', 999);
-```
-
-### Verify Nonce
-``` 
-$nonce = new WpNonce;
-$result = $nonce->verifyNonce('42fb9b0c15', 'my-nonce', 999);
-```
-False if the nonce is invalid, 1 if the nonce is valid and generated between 0-12 hours ago, 2 if the nonce is valid and generated between 12-24 hours ago.
-
-### Display Nonce Field
-Displays hidden form fields with nonce value and referer value if set to true. User ID is required.
-``` 
-$nonce = new WpNonce;
-$nonceField = $nonce->displayField( 'my-nonce', '_wpnonce', $referer = true , $echo = false, $uid = 999 );
-```
-
-### Retrieve URL with nonce added
-Returns escaped URL with nonce action added.
-``` 
-$nonce = new WpNonce;
-$nonceUrl = $nonce->retrieveUrl( 'http://my-url.com/wp-admin/', 'my-nonce', '_wpnonce', $uid = 999 );
-```
-
-### Check if admin referer
-Makes sure that a user was referred from another admin page.
-``` 
-$nonce = new WpNonce;
-$adminReferer = $nonce->checkAdminReferer( $action = 'my-nonce', $query_arg = '_wpnonce', $uid = 999 );
+GET http://127.0.0.1:8000/api/v1/score/php
+RESULT JSON {"term":"php","score":"3.36"}
 ```
 
 ## Minimum Requirements
 
-- PHP 5.6+
+- PHP 7.0+
 - Composer to install
-
-
-## Tests
-To run the tests:
-
-1. Switch into the WpNonces directory
-2. run `composer install` if you didn't already,
-3. run `phpunit`
 
 ## License
 

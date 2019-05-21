@@ -104,7 +104,7 @@ class ApiV2 extends Cache {
         $this->services = [
             'github' => [
                 'uri' => 'https://api.github.com',
-                'auth' => 'Authorization: ivkatic:195d9464f1081328c8dea3313fd1f813e90a936e',
+                'auth' => 'Authorization: '.$_ENV['GITHUB_TOKEN'],
             ]
         ];
 
