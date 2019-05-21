@@ -7,11 +7,12 @@ use App\Api\GithubApi;
 
 /**
  * Main API class
- * 
+ *
  * @since 1.0.0
  * @package API
  */
-class Api extends Cache {
+class Api extends Cache
+{
 
     /**
      * Array that holds all services that can be used (Github, Twitter, ...)
@@ -38,7 +39,8 @@ class Api extends Cache {
      */
     public $request_check;
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->init_services();
     }
@@ -49,7 +51,7 @@ class Api extends Cache {
      * @param string $endpoint
      * @param string $data
      * @return mixed array or object
-     * 
+     *
      * @since 1.0.0
      */
     public function client($endpoint, $data = '')
@@ -73,20 +75,21 @@ class Api extends Cache {
 
     /**
      * GET data from service api
-     * 
+     *
      * @todo Add caching in here?
      *
      * @param string $params
      * @param string $route
      * @param string $service
      * @return object $obj service reponse
-     * 
-     * @since 1.0.0 
+     *
+     * @since 1.0.0
      */
-    public function get($params, $route, $service = '') {
-        if('' !== $service) {
+    public function get($params, $route, $service = '')
+    {
+        if ('' !== $service) {
             $service = $this->services[$service];
-        } else if('' === $service) {
+        } elseif ('' === $service) {
             $service = $this->default_serv;
         }
 
@@ -107,19 +110,38 @@ class Api extends Cache {
     }
 
     /**
+     * Insert data into service api
+     *
+     * @return void
+     */
+    public function put()
+    {
+    }
+
+    /**
+     * Update data in service api
+     *
+     * @return void
+     */
+    public function update()
+    {
+    }
+
+    /**
      * Checks Client Request headers and sets Reponse Code
      *
      * @return void
      * @since 1.0.0
      */
-    protected function checkRequest() {
+    protected function checkRequest()
+    {
         $requestHeaders = getallheaders();
  
-        if(!isset($requestHeaders['Content-Type'])) {
+        if (!isset($requestHeaders['Content-Type'])) {
             $this->request_check = 400;
-        } else if( isset($requestHeaders['Content-Type']) && $requestHeaders['Content-Type'] !== 'application/vnd.api+json' ) {  
+        } elseif (isset($requestHeaders['Content-Type']) && $requestHeaders['Content-Type'] !== 'application/vnd.api+json') {
             $this->request_check = 415;
-        } else if(isset($requestHeaders['Accept']) && $requestHeaders['Accept'] !== 'application/vnd.api+json') {
+        } elseif (isset($requestHeaders['Accept']) && $requestHeaders['Accept'] !== 'application/vnd.api+json') {
             $this->request_check = 406;
         } else {
             $this->request_check = 200;
@@ -134,7 +156,8 @@ class Api extends Cache {
      * @return void
      * @since 1.0.0
      */
-    private function init_services() {
+    private function init_services()
+    {
         $this->services = [
             'github' => [
                 'uri' => 'https://api.github.com',
