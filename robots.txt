@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Disallow: .env 
+Disallow: .env.dist
+Disallow: .env.local
+Disallow: .travis.yml
