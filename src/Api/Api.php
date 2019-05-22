@@ -130,7 +130,7 @@ class Api extends Cache
     }
 
     /**
-     * Delete data from api
+     * Delete data from API
      *
      * @return void
      * @since 1.0.0
