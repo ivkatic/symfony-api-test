@@ -21,8 +21,8 @@ class GithubApiV2 extends ApiV2
         if ($this->request_check !== 200) {
             return [
                 'content' => '',
-                'status' => $this->checkRequest(),
-                'headers' => ['Status' => $this->checkRequest()]
+                'status' => $this->request_check,
+                'headers' => ['Status' => $this->request_check]
             ];
         }
 
